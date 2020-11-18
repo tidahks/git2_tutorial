@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <title>api연습</title>
+    
+</head>
+<body>
+    <h1>hello사이트</h1>
+    <p></p>
+<script>
+    $.ajax({
+        headers: {Authorization:" KakaoAK 33e79782d679c605cdd6a7254ed12cf6"},
+        method: "GET",
+        url: "https://dapi.kakao.com/v3/search/book?target=title",
+        data:{query: "미움받을 용기"}
+    })
+    .done(function(msg){
+        console.log(msg.documents[0].title);
+        console.log(msg.documents[0].thumbnail);
+        //자바스크립트에서 html수정하기
+        $("p").append(msg.documents[0].title);
+        $("p").append("<img src='"+msg.documents[0].thumbnail+"'/>");
+    });
+</script>
+</body>
+</html>
